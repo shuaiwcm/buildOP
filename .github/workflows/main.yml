@@ -3,8 +3,6 @@ name: 编译openwrt固件
 on:
   workflow_dispatch:
 
-permissions:
-  contents: read
 
 jobs:
   build_op:
