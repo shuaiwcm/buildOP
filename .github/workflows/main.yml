@@ -2,12 +2,8 @@ name: 编译openwrt固件
 
 on:
   workflow_dispatch:
-    inputs:
-      SSH_ACTION: # 定义一个输入参数
-        description: "是否启用 SSH 远程连接步骤"
-        required: true
-        default: "false" # 默认值为 false
-        type: boolean
+
+
 jobs:
   build_op:
   
@@ -47,9 +43,6 @@ jobs:
           mv files openwrt/files
           cd openwrt
           sed -i 's/192.168.1.1/192.168.50.1/g' package/base-files/files/bin/config_generate
-      - name: SSH 远程连接（make menuconfig）
-        if: ${{ inputs.SSH_ACTION == 'true' }}
-        uses: danshui-git/debugger-action@main
       - name: 下载软件包
         run: |
           cd openwrt
